@@ -20,6 +20,7 @@ export const App: FC = () => {
   const onClickClear = () => {
     // empty text box.
     setText("");
+    setAfterText("");
   };
 
   return (
