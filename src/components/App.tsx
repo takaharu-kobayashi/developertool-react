@@ -26,7 +26,7 @@ export const App: FC = () => {
   return (
     <div>
       <STextarea value={text} onChange={onChangeText}></STextarea>
-      <SButton onClick={onClickAdd}>Remove blank row</SButton>
+      <SButton onClick={onClickAdd}>Remove blank rows</SButton>
       <SButton onClick={onClickClear}>Clear</SButton>
       <SOutTextarea value={afterText}></SOutTextarea>
     </div>
