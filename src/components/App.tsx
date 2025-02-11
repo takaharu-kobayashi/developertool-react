@@ -16,6 +16,16 @@ export const App: FC = () => {
     setAfterText(text.split("\n").filter((row) => row.trim() !== "").join("\n"));
   };
 
+  // When [Copy to Clipboard] button is pressed.
+  const copyToClipboard = async () => {
+    try {
+      await navigator.clipboard.writeText(afterText);
+      alert("Copied to clipboard!");
+    } catch (err) {
+      console.error("Failed to copy:", err);
+    }
+  };
+
   // When the [Clear] button is pressed.
   const onClickClear = () => {
     // empty text box.
@@ -27,6 +37,7 @@ export const App: FC = () => {
     <div>
       <STextarea value={text} onChange={onChangeText}></STextarea>
       <SButton onClick={onClickAdd}>Remove blank rows</SButton>
+      <SButton onClick={copyToClipboard}>Copy to Clipboard</SButton>
       <SButton onClick={onClickClear}>Clear</SButton>
       <SOutTextarea value={afterText}></SOutTextarea>
     </div>
