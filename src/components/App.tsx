@@ -20,7 +20,6 @@ export const App: FC = () => {
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(afterText);
-      alert("Copied to clipboard!");
     } catch (err) {
       console.error("Failed to copy:", err);
     }
