@@ -6,6 +6,8 @@ export const App: FC = () => {
   const [text, setText] = useState<string>("");
   // Output Textarea for changed State.
   const [afterText, setAfterText] = useState<string>("");
+  // Copy State.
+  const [copied, setCopied] = useState<boolean>(false);
 
   // Set input content to State when entering text box.
   const onChangeText = (e: ChangeEvent<HTMLTextAreaElement>) => setText(e.target.value);
@@ -20,11 +22,13 @@ export const App: FC = () => {
   const copyToClipboard = async () => {
     try {
       await navigator.clipboard.writeText(afterText);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 3000); // 3秒後に非表示
     } catch (err) {
       console.error("Failed to copy:", err);
     }
   };
-
+  
   // When the [Clear] button is pressed.
   const onClickClear = () => {
     // empty text box.
@@ -37,6 +41,7 @@ export const App: FC = () => {
       <STextarea value={text} onChange={onChangeText}></STextarea>
       <SButton onClick={onClickAdd}>Remove blank rows</SButton>
       <SButton onClick={copyToClipboard}>Copy to Clipboard</SButton>
+      {copied && <span style={{ color: "green" }}>Copied!</span>}
       <SButton onClick={onClickClear}>Clear</SButton>
       <SOutTextarea value={afterText}></SOutTextarea>
     </div>
